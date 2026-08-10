@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>乳饮类目口味趋势看板</title>
+<style>
+:root{--bg:#faf8f5;--card-bg:#fff;--ink:#1a1a1a;--ink-2:#888;--accent-dairy:#d4a574;--accent-dairy-light:#f5ebe0;--accent-drink:#6bae8a;--accent-drink-light:#e8f3ed;--border:#ece8e3;--shadow:0 1px 3px rgba(0,0,0,.04);--shadow-hover:0 4px 16px rgba(0,0,0,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.hero{background:linear-gradient(135deg,#f5ebe0 0%,#e8f3ed 100%);padding:48px 32px 40px;text-align:center}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
+.container{max-width:1400px;margin:0 auto;padding:32px 24px}
+.cat-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid var(--border)}
+.cat-header .cat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cat-header.dairy .cat-icon{background:var(--accent-dairy-light)}
+.cat-header.drink .cat-icon{background:var(--accent-drink-light)}
+.cat-header h2{font-size:22px;font-weight:700}
+.trend-card{background:var(--card-bg);border-radius:16px;padding:28px;margin-bottom:24px;box-shadow:var(--shadow);transition:box-shadow .2s}
+.trend-card:hover{box-shadow:var(--shadow-hover)}
+.trend-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.trend-number{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;color:#fff}
+.trend-card.dairy .trend-number{background:var(--accent-dairy)}
+.trend-card.drink .trend-number{background:var(--accent-drink)}
+.trend-title{font-size:18px;font-weight:700;line-height:1.4}
+.trend-desc{font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px}
+.nc-cgrid{display:grid;gap:12px;grid-template-columns:repeat(5,1fr)}
+.nc-c{display:block;background:rgba(255,255,255,.98);border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
+.nc-c:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.nc-c-img{width:100%;aspect-ratio:3/4;background:#f5f5f5;overflow:hidden}
+.nc-c-img img{width:100%;height:100%;object-fit:cover;display:block}
+.nc-c-title{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;padding:8px 10px 4px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:36px}
+.nc-c-foot{font-size:11px;color:var(--ink-2);padding:0 10px 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:1200px){.nc-cgrid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:900px){.nc-cgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.container{padding:20px 16px}.trend-card{padding:20px}.nc-cgrid{grid-template-columns:repeat(2,1fr);gap:10px}.hero h1{font-size:22px}.cat-header h2{font-size:18px}.trend-title{font-size:16px}.trend-desc{font-size:14px}.nc-c-title{font-size:12px;padding:6px 8px 2px}.nc-c-foot{font-size:10px;padding:0 8px 6px}}
+.section-gap{height:16px}
+.footer{text-align:center;padding:32px 24px;font-size:12px;color:#999}
+</style>
+</head>
+<body>
+<div class="hero"><h1>乳饮类目口味趋势看板</h1></div>
+<div class="overview" style="max-width:1400px;margin:0 auto;padding:24px 24px 0;background:rgba(255,255,255,0.6);border-radius:0 0 16px 16px;">
+    <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:12px;text-align:center;">综述</div>
+    <div style="font-size:15px;color:#1a1a1a;line-height:2.2;text-align:center;">
+      乳制品：奶皮子口味 ｜ 咖啡拿铁味 ｜ 干噎新形式 ｜ 联名赠品<br>
+      饮品：街头糖水复刻 ｜ 薄荷刺梨清爽系 ｜ 地域独特风味（广西茉莉/杏皮茶） ｜ 椰子水
+    </div>
+  </div>
+<div class="container">
+<div class="cat-header dairy"><div class="cat-icon">🥛</div><h2>乳制品</h2></div>
+<div class="trend-card dairy">
+  <div class="trend-header">
+    <div class="trend-number">1</div>
+    <div class="trend-title">奶皮子冰牛奶/大米生牛乳</div>
+  </div>
+  <div class="trend-desc">草原牧场鲜奶直发、全球奶酪尝鲜、大米冰淇淋等地域标签和品质背书是核心种草逻辑。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a61d411000000001d020f45" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/b050e60bcd67f3496346221f71e6e124/notes_pre_post/1040g3k0322v4qp4tno105q8uhmtdoh0q6fqvbmo!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">拜托都去喝这个超好喝的奶皮子冰牛奶！</div>
+      <div class="nc-c-foot">@天牧遥酸奶的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a586b2c000000000301fe4f" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/3a2c5536df858352a200de66ceeba61a/1040g2sg322m17ol97oe05n44us0453rapd96mto!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">买奶酪不踩雷✅全球20种奶酪尝鲜装</div>
+      <div class="nc-c-foot">@奶酪猴子Cheese Monkey的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5752b2000000000f005ef6" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/d103667870fb6ec4b519a65e0c9e627f/notes_pre_post/1040g3k0322kv0aqg722048u194irhso3nmpnfjo!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">奶皮子PLUS版！英国皇室同款奶油补到小规格</div>
+      <div class="nc-c-foot">@企鹅吃喝的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a6b0a3b0000000032021d4f" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/aa6253584fc1adef0ee5317549e46341/notes_pre_post/1040g3k83238744anmu005pdrd6e2fn2973h2o30!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">高糖奶茶靠边站，苦巧奶才是主场🍫</div>
+      <div class="nc-c-foot">@乐纯旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a508e85000000000f014cab" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102156/8805266712a927c9ba61a18ed1d623b5/110/0/01ea508e1e59b6dc0010000000019f4aab31a3_0.jpg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">融化的大米冰淇淋！好喝到炸</div>
+      <div class="nc-c-foot">@一鸣食品旗舰店</div>
+    </a>
+  </div>
+</div>
+<div class="trend-card dairy">
+  <div class="trend-header">
+    <div class="trend-number">2</div>
+    <div class="trend-title">咖啡/拿铁</div>
+  </div>
+  <div class="trend-desc">海河拿铁、港式鸳鸯、九峰浓咖拿铁——咖啡风味牛奶是乳制品增长最快的口味赛道，吸引的是奶茶替代型消费者。“不是戒奶茶了，是找到了更低卡的选择”是典型叙事。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a7186f3000000002403e4e1" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/2c73618d1da08045b243bcd4012f0025/notes_pre_post/1040g3k0323ei7dl4nu005oiu95jk0n6hf7042d0!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">海河新品官宣❗别再觉得好喝拿铁一定有糖✨</div>
+      <div class="nc-c-foot">@天津海河乳品有限公司的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a563919000000001101f208" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/c638b6079f9cde509b9b562610194d60/1040g2sg322jsms07n0eg5pvrh1a1jv4qq6fdbgg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">一旦接触薄荷可可基本就告别奶茶咖啡了</div>
+      <div class="nc-c-foot">@向往一杯的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a77ed2200000000330190f3" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/d0be06dfbf84bf0dd554e467b8d9656a/1040g2sg323k0orc2723g5okmt0h8c4hhsqa19pg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">海河新品港式鸳鸯拿铁，平价神仙饮品</div>
+      <div class="nc-c-foot">@天津海河牛奶的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a64567e000000001d00d7ac" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/c1b709e6269fc44bda8a6c06b1fe8b08/spectrum/1040g0k03231lo0k8mu105p23gu6k585csksci40!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">✨三得利限定｜港式奶茶拿铁太会了</div>
+      <div class="nc-c-foot">@佑文美食的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a6091ee0000000010028e65" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102054/50bc1ab3063ad045d9c32de06fd9c717/1040g2sg322tq35d6nal04a78tja2jm5imkhm010!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">打败旧九峰咖啡牛奶的，只有全新浓浓咖拿铁</div>
+      <div class="nc-c-foot">@九峰牧场旗舰店</div>
+    </a>
+  </div>
+</div>
+<div class="trend-card dairy">
+  <div class="trend-header">
+    <div class="trend-number">3</div>
+    <div class="trend-title">干噎新形式</div>
+  </div>
+  <div class="trend-desc">罐罐奶片、干噎酸奶、茶味奶泡泡、粉笔奶酪——传统地域奶制品被重新包装成零食化、可分享的“非液态”吃法，手工感+奶香活浓是核心卖点，社交传播天然适合拍照种草。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a61d483000000000f008b68" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102044/e2b7655b60b42cae12cba17bbe17acf6/spectrum/1040g34o322v7a0nrn0305q2h73p6se3h5o7copg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">每天都随身携带的罐罐奶片，真的好好吃啊</div>
+      <div class="nc-c-foot">@MORI MORIYA的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a606e0f000000001302dec3" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/e67ebf88e03d2f28d80e4b18a9109d9e/1040g008322trj84rna6g5qhq88ojvc0044tlcbo!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">最近迷上这种干噎酸奶越嚼越香了呀</div>
+      <div class="nc-c-foot">@一口噎酸奶的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a6ad20c000000001303ee48" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/de610657ba7005b36e555f9b09e2c302/notes_uhdr/1040g3qg32380c91ink005nvlfj3g8ok9tgvj7mg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">干噎酸奶发货啦～</div>
+      <div class="nc-c-foot">@乐犇源的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a57a0fd000000001503c852" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102158/76a451795193b334e7f0a20627646450/1040g008322l8h4oi7a005qenjllsvajshhhieso!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">你们想看的「酸奶掰掰乐」合集，它来啦📣!!!</div>
+      <div class="nc-c-foot">@盛荷牧场的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a603dda000000000c016845" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102158/b77613836de03d5e9dbc023c51abcba7/1040g2sg322tla96o7oeg5nlo8fp08algvfv4vhg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">比奶泡泡奇怪100倍的粉笔奶酪！</div>
+      <div class="nc-c-foot">@札萨旗舰店</div>
+    </a>
+  </div>
+</div>
+<div class="trend-card dairy">
+  <div class="trend-header">
+    <div class="trend-number">4</div>
+    <div class="trend-title">联名/赠品</div>
+  </div>
+  <div class="trend-desc">盲盒牛奶、联名款、限定杯套——品牌跨界联名和赠品周边是乳制品内容营销的重要手法，以“惊喜感”“收藏感”驱动种草和转化。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5df20a000000000f030259" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/68d8a82cae114bbb6c2fd1e5ca2f1953/spectrum/1040g34o322rdgkv46s205okcol5ocm2o2rhg0i0!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">9.9💰的盲盒牛奶：真的很难拒绝吧！</div>
+      <div class="nc-c-foot">@乍甸乳业旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5a0b1e0000000013025872" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/3f34ddbdb48b7aff11a772ea3b4882a9/1040g008322njsrpg7a1g5peljalhee1asddoqq8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">杯子控集合❗️买纯享就送奇异果马克杯🥝</div>
+      <div class="nc-c-foot">@纯享酸奶旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5d93ba000000000401d281" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/50f79aba37ff0783191be4aa85162e25/spectrum/1040g34o322r24idq6ucg5nqoguk08bqta9k94tg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">mo？奇怪的赠品增加了。。</div>
+      <div class="nc-c-foot">@佳宝乳业旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a65deb90000000011012b1c" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/497541f147002b1f533cdc9977ed8837/notes_pre_post/1040g3k832335f6de72k05pm0bgm7e86ok84i1d8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">拿这个牛奶杯当赠品🥛？悦鲜活你不要太会送！</div>
+      <div class="nc-c-foot">@悦鲜活鲜奶旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a50c49f000000002201b0a3" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/35ed7d663dcebc9950cd92c9b0c63985/1040g008322ei6j1pn0004a7m2euh97g53k3urpg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">联名官宣|奶咖就是你浓我浓</div>
+      <div class="nc-c-foot">@永璞咖啡旗舰店</div>
+    </a>
+  </div>
+</div>
+<div class="section-gap"></div>
+<div class="cat-header drink"><div class="cat-icon">🥤</div><h2>饮品</h2></div>
+<div class="trend-card drink">
+  <div class="trend-header">
+    <div class="trend-number">1</div>
+    <div class="trend-title">街头糖水店复刻(潮汕话梅/苏式绿豆汤)</div>
+  </div>
+  <div class="trend-desc">苏式绿豆汤、潮汕话梅糖浆、手工仙草冻——街头糖水店复刻是近30天饮品里的新兴口味赛道，以“手工现做”“传统味道复刻”为核心叙事，强调古早味道和手工感。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a51c2c900000000170280b2" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/894bc24b14363b15ed5f02f3a551fe38/note_pre_post_uhdr/1040g3r8322fh664q7k705pagn2ih78afr0pbc88!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">苏式绿豆汤！！还是牙膏水🤔可以邮寄吃到啦</div>
+      <div class="nc-c-foot">@东吴小娘鱼绿豆汤（全国邮寄）的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a53cd11000000001101a8a4" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/4bed1b34eb4e5f2afc5e68e6656230e9/notes_pre_post/1040g3k8322hgvsivn4705q6cnqaoc3g7lsiv8s0!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">流水线绝对复刻不出我家手工话梅糖浆😆</div>
+      <div class="nc-c-foot">@果小酱 Little Fru的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a538f9f000000000803fcb0" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/ad89416d0838b0d83e06b79f8e7e00a8/1040g2sg322h5k6ggnoeg5qdu9k7ssfhck75uaqo!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">喝芭乐话梅茶一个月，冰美式戒了，卡扔了</div>
+      <div class="nc-c-foot">@启Q先优选的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5c31db000000001c00c505" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/6bed9fcf858bde4f0f8a3e59aeba9706/1040g2sg322pn7elv00lg5p6csaf2p9hubrggt7o!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">几千家糖水店在用的仙草冻到底是怎么做的？</div>
+      <div class="nc-c-foot">@庆春仙草的店</div>
+    </a>
+  </div>
+</div>
+<div class="trend-card drink">
+  <div class="trend-header">
+    <div class="trend-number">2</div>
+    <div class="trend-title">薄荷/刺梨/蓝莓/山竹</div>
+  </div>
+  <div class="trend-desc">薄荷可可水、薄荷冰可、刺梨汁——薄荷/刺梨/蓝莓/山竹是饮品里清爽系口味的代表，以“夏季解暑”“高维C”“抗氧质”为种草关键词，尤其薄荷+可可组合热度最高。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a576ee00000000011007a25" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/ff652e433fa04aa57a16319cd48136db/notes_pre_post/1040g3k0322kue1sn6s004a4s0ul56urcd9bmpb0!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">薄荷可可水直接上位😋奶茶先靠边站👋</div>
+      <div class="nc-c-foot">@敬您一杯的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a6b633b0000000022033619" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/05aeecd895274af637743980f4471729/notes_pre_post/1040g3k03238hri5cnu005p37lomqar1umcpnq10!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">🌍刺梨这VC含量真的是地球上的水果吗？</div>
+      <div class="nc-c-foot">@照野  金刺梨Shot的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a6c36c5000000003302d266" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/f1aa72c2e620755436c35d321ba3d939/1040g2sg323832g6h7kj05qhp530jvf00m9fial8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">薄荷冰可可💦对抗皮质醇真的夯爆了！！</div>
+      <div class="nc-c-foot">@Stillness Tea静隅茶的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5f81d900000000040284d1" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/87eb1ef549dbe69cd60470157be74a78/spectrum/1040g34o322t0b1pmn2105nrhh2j0bgl90naedqo!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">夏日自救丨这瓶刺梨汁简直是三伏天续命水</div>
+      <div class="nc-c-foot">@东方甄选旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5f38c2000000001d00e176" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/f04a39e4d06edab3fa5810a4ad7c53b2/spectrum/1040g0k0322slrilon4005pv0tlmjjhrv7ggb05g!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">你有这么清爽的薄荷冰茶进入中国😭</div>
+      <div class="nc-c-foot">@爱乐甜 Lesweet旗舰店</div>
+    </a>
+  </div>
+</div>
+<div class="trend-card drink">
+  <div class="trend-header">
+    <div class="trend-number">3</div>
+    <div class="trend-title">地域独特风味(广西茉莉/杏皮茶)</div>
+  </div>
+  <div class="trend-desc">广西茉莉、西北杏皮茶——地域独特风味是饮品里覆盖面和成交最高的口味赛道，“横州茉莉”“花香抄不走”的地域故事叙事是主要种草路径，杏皮茶、酸角汁等传统味道也在集中冒头。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a50be15000000001003cfe6" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/a4ddc852d2fb03212a567bb2cf6d02df/1040g008322de5fhn703g5q93pdotuaa18egolpg!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">为了茉莉水的品质，我们做了一个艰难抉择</div>
+      <div class="nc-c-foot">@一口酥屋的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5321700000000015025d18" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/7678e60552e930fda5b3f57abe37859b/notes_pre_post/1040g3k0322gp94ia7u604afq9udbdcpnvkvfcro!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">唯一缺点：广西横州限定</div>
+      <div class="nc-c-foot">@广西茉莉大堂经理小明的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a6b4cd80000000035014fbf" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/9fb3b88030124c6ab8a93e5bef069544/note_pre_post_uhdr/1040g3r83238f6hmd7uag40lo7l2oaloa61h2vao!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">西北人的夏天，永远偏爱这口传统老味道</div>
+      <div class="nc-c-foot">@敦幸杏皮茶旗舰店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a51d0c50000000022008385" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102044/a2bc4bff04619a28ddb4b99edd3e0519/1040g008322fim57h7ae05qe6fvqcv2o9s3ttdd8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">谢谢大家关心，没想到这样的方式知道茉莉花</div>
+      <div class="nc-c-foot">@桂小物的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5788f20000000022014cbc" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/783ca44afd956296f807759d5285d2be/notes_pre_post/1040g3k8322l4n4bm7o9g5ptprkmj93vpibknsc8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">包装能做得像，但横州茉莉的花香真的抄不走</div>
+      <div class="nc-c-foot">@想把春天卖掉的店</div>
+    </a>
+  </div>
+</div>
+<div class="trend-card drink">
+  <div class="trend-header">
+    <div class="trend-number">4</div>
+    <div class="trend-title">椰子水</div>
+  </div>
+  <div class="trend-desc">椰子水是植物基里的绝对主力，东方甄选、椰子知道、胡子叔等品牌靠“夯品”“无限回购”式种草跑出，叙事强调“夏天+补水+天然”，送检自证等内容开始出现，品类认知正在建立。</div>
+  <div class="nc-cgrid">
+    <a href="https://www.xiaohongshu.com/discovery/item/6a66ffcd000000000f013d17" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102007/2b3a0b19757c36c6df9317e1b93eec5b/1040g00832348u5c9nu005pcaevmog2mon1tcnj8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">真正的椰子水，注定做不到“无糖”</div>
+      <div class="nc-c-foot">@仙仙草唐的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5a08da000000000f0093b5" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102044/3a294e55a0722f659f2cffd4ecd59152/note_pre_post_uhdr/1040g3r8322njjkvlnua05q7i0btdp4snhq2s5qo!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">到底什么人群在喝抹茶椰子高钾水❓</div>
+      <div class="nc-c-foot">@壹抹集的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a52479c000000002201bb92" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102150/50bb97196eb147193cdeaab2423c5d8d/1040g008322g0lahn70005qi8mii40000sbullc8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">谁懂啊夏天无限回购的椰子水🥥❗️❗️❗️</div>
+      <div class="nc-c-foot">@糖糖的零食铺子的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a5645c3000000001101e3fb" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102044/b3e714ef1be3306b0c628df5d9a0da2a/spectrum/1040g0k0322jnj6j5n4005q776lvtt7nlb35lig0!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">纯纯纯！海南室友看了都夸这个椰子水太纯了</div>
+      <div class="nc-c-foot">@柯玖3h6的店</div>
+    </a>
+    <a href="https://www.xiaohongshu.com/discovery/item/6a68501f000000000f01d186" target="_blank" class="nc-c">
+      <div class="nc-c-img"><img src="https://sns-webpic-qc.xhscdn.com/202608102102/9d643454af3bdd16a27cef61a03240e9/spectrum/1040g34o3235he69h70105n7ieo2lnifg7f3jtq8!nd_dft_wlteh_jpg_3" loading="lazy"></div>
+      <div class="nc-c-title">椰子水造假被锤？看报告，我们自己送检了</div>
+      <div class="nc-c-foot">@胡子叔的餐盘的店</div>
+    </a>
+  </div>
+</div>
+</div>
+<div class="footer">乳饮类目口味趋势 · 近30天</div>
+</body>
+</html>
